@@ -1,0 +1,24 @@
+{% extends 'base.jinja2' %}
+
+{% block title %}{{ user.first_name }} {{ user.last_name }}{% endblock %}}
+
+{% block content %}
+  <div class="d-flex align-items-center mb-3 gap-4">
+    <img src="{{ user.image_url }}" alt="profile-picture" width="80" height="100">
+    <div>
+      <h3>{{ user.first_name }} {{ user.last_name }}</h3>
+      <p>user id: {{ user.id }}</p>
+    </div>
+  </div>
+
+  <form>
+    <button formaction="/users/{{ user.id }}/edit" formmethod="GET"
+            class="btn btn-outline-dark">
+      Edit
+    </button>
+    <button formaction="/users/{{ user.id }}/delete" formmethod="POST"
+            class="btn btn-outline-dark">
+      Delete
+    </button>
+  </form>
+{% endblock %}
