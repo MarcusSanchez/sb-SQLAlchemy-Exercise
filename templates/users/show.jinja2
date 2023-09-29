@@ -1,0 +1,43 @@
+{% extends 'base.jinja2' %}
+
+{% block title %}{{ user.first_name }} {{ user.last_name }}{% endblock %}}
+
+{% block content %}
+  <div class="d-flex align-items-center mb-3 gap-4">
+    <img src="{{ user.image_url }}" alt="profile-picture" width="80" height="100">
+    <div>
+      <h3>{{ user.first_name }} {{ user.last_name }}</h3>
+      <p>user id: {{ user.id }}</p>
+    </div>
+  </div>
+
+  <form>
+    <button formaction="/users/{{ user.id }}/edit" formmethod="GET" class="btn btn-outline-dark">
+      Edit
+    </button>
+    <button formaction="/users/{{ user.id }}/delete" formmethod="POST" class="btn btn-outline-dark">
+      Delete
+    </button>
+  </form>
+
+  <hr>
+
+  {% if user.posts %}
+    <h3>POSTS</h3>
+    <ul>
+      {% for post in user.posts %}
+        <li>
+          <a href="/posts/{{ post.id }}">{{ post.title }}</a>
+        </li>
+      {% endfor %}
+    </ul>
+  {% else %}
+    <p>No posts yet</p>
+  {% endif %}
+
+  <form>
+    <button formaction="/users/{{ user.id }}/posts/new" formmethod="GET" class="btn btn-outline-dark">
+      Create Post
+    </button>
+  </form>
+{% endblock %}

@@ -1,0 +1,24 @@
+{% extends 'base.jinja2' %}
+
+{% block title %}Create Post{% endblock %}
+
+{% block content %}
+  <h1>Add Post for {{ user.first_name }} {{ user.last_name }}</h1>
+
+  <form method="POST">
+    <label class="d-flex gap-2 mb-3">
+      Title
+      <input name="title">
+    </label>
+
+    <label class="d-flex gap-2 mb-3">
+      Content
+      <textarea name="content"></textarea>
+    </label>
+
+    <button formaction="/users/{{ user.id }}" formmethod="get" class="btn btn-outline-primary">
+      Cancel
+    </button>
+    <button type="submit" class="btn btn-outline-dark">Add</button>
+  </form>
+{% endblock %}

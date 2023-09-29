@@ -18,9 +18,11 @@
   {% endif %}
 
   <hr>
-  <button class="btn btn-outline-primary">
-    <a href="/users/new" class="text-decoration-none">Create New User</a>
-  </button>
+  <form>
+    <button formaction="/users/new" formmethod="get" class="btn btn-outline-primary">
+      Create New User
+    </button>
+  </form>
 {% endblock %}
 
 

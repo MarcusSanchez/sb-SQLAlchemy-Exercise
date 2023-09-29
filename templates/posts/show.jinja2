@@ -1,0 +1,22 @@
+{% extends 'base.jinja2' %}
+
+{% block title %}{{ post.title }}{% endblock %}
+
+{% block content %}
+  <h3>{{ post.title }}</h3>
+  <p>By {{ post.user.first_name }} {{ post.user.last_name }}</p>
+  <p>{{ post.content }}</p>
+
+
+  <form>
+    <button formmethod="GET" formaction="/users/{{ post.user_id }}" class="btn btn-outline-dark">
+      Cancel
+    </button>
+    <button formmethod="GET" formaction="/posts/{{ post.id }}/edit" class="btn btn-outline-dark">
+      Edit
+    </button>
+    <button formmethod="POST" formaction="/posts/{{ post.id }}/delete" class="btn btn-outline-dark">
+      Delete
+    </button>
+  </form>
+{% endblock %}
