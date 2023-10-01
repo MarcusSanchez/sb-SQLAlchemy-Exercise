@@ -46,7 +46,3 @@ class BloglyTestCase(TestCase):
             html = resp.get_data(as_text=True)
             self.assertEqual(resp.status_code, 200)
             self.assertIn('<title>Uh oh</title>', html)
-
-
-
-

@@ -1,0 +1,29 @@
+{% extends 'base.jinja2' %}
+
+{% block title %}Create Tag{% endblock %}
+
+{% block content %}
+  <h1>Create Tag</h1>
+
+  <form method="POST" action="/tags/new">
+
+
+    <label class="d-flex gap-2 mb-3">
+      Name
+      <input type="text" name="name" placeholder="Enter a name for the tag">
+    </label>
+
+    {% for post in posts %}
+      <label class="d-flex flex-row gap-2 mb-3">
+        <input type="checkbox" value="{{ post.id }}" name="posts">
+        {{ post.title }}
+      </label>
+    {% endfor %}
+
+    <button formaction="/tags" formmethod="get" class="btn btn-outline-primary">
+      Cancel
+    </button>
+    <button type="submit" class="btn btn-outline-dark">Create Tag</button>
+
+  </form>
+{% endblock %}

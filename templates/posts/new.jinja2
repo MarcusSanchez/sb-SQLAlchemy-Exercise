@@ -16,6 +16,14 @@
       <textarea name="content"></textarea>
     </label>
 
+    {% for tag in tags %}
+      <label>
+        {{ tag.name }}
+        <input type="checkbox" value="{{ tag.id }}" name="tags">
+      </label>
+    {% endfor %}
+    <br><br>
+
     <button formaction="/users/{{ user.id }}" formmethod="get" class="btn btn-outline-primary">
       Cancel
     </button>

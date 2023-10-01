@@ -1,0 +1,23 @@
+{% extends 'base.jinja2' %}
+
+{% block title %}Tags{% endblock %}
+
+{% block content %}
+  <h1>Tags</h1>
+  <hr>
+
+  <ul>
+    {% for tag in tags %}
+      <li>
+        <a href="/tags/{{ tag.id }}">{{ tag.name }}</a>
+      </li>
+    {% endfor %}
+  </ul>
+  <hr>
+
+  <form>
+    <button class="btn btn-outline-dark" formaction="/tags/new" formmethod="get">
+      Add Tag
+    </button>
+  </form>
+{% endblock %}

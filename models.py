@@ -30,3 +30,19 @@ class Posts(db.Model):
     content = db.Column(db.Text, nullable=False)
     created_at = db.Column(db.DateTime, nullable=False, default=datetime.now)
     user_id = db.Column(db.Integer, db.ForeignKey('users.id'), nullable=False)
+
+
+class Tags(db.Model):
+    __table_name__ = 'tags'
+
+    id = db.Column(db.Integer, primary_key=True)
+    name = db.Column(db.Text, nullable=False, unique=True)
+
+    posts = db.relationship('Posts', secondary='posts_tags', backref='tags')
+
+
+class PostsTags(db.Model):
+    __table_name__ = 'posts_tags'
+
+    post_id = db.Column(db.Integer, db.ForeignKey('posts.id'), primary_key=True)
+    tag_id = db.Column(db.Integer, db.ForeignKey('tags.id'), primary_key=True)

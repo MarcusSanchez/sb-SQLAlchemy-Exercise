@@ -1,0 +1,24 @@
+{% extends 'base.jinja2' %}
+
+{% block title %}{{ tag.name }}{% endblock %}
+
+{% block content %}
+  <h1>{{ tag.name }}</h1>
+
+  <ul>
+    {% for post in tag.posts %}
+      <li>
+        <a href="/posts/{{ post.id }}">{{ post.title }}</a>
+      </li>
+    {% endfor %}
+  </ul>
+
+  <form>
+    <button formmethod="GET" formaction="/tags/{{ tag.id }}/edit" class="btn btn-outline-dark">
+      Edit
+    </button>
+    <button formmethod="POST" formaction="/tags/{{ tag.id }}/delete" class="btn btn-outline-dark">
+      Delete
+    </button>
+  </form>
+{% endblock %}

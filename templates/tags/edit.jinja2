@@ -1,0 +1,27 @@
+{% extends 'base.jinja2' %}
+
+{% block title %}Edit Tag{% endblock %}
+
+{% block content %}
+  <h1>Edit a tag</h1>
+
+  <form method="POST" action="/tags/{{ tag.id }}/edit">
+    <label class="d-flex gap-2 mb-3">
+      Name
+      <input type="text" name="name" placeholder="tag name..." value="{{ tag.name }}">
+    </label>
+
+    {% for post in posts %}
+      <label class="d-flex flex-row gap-2 mb-3">
+        {{ post.title }}
+        <input type="checkbox" value="{{ post.id }}" name="posts" {% if post in tag.posts %} checked {% endif %}>
+      </label>
+    {% endfor %}
+    <br><br>
+
+    <button formaction="/tags" formmethod="get" class="btn btn-outline-primary">
+      Cancel
+    </button>
+    <button type="submit" class="btn btn-outline-dark">Save</button>
+  </form>
+{% endblock %}
